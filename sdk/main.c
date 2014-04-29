@@ -93,8 +93,7 @@ int main()
 
 		   if (DataRead == 2 && !game_over) {
 			   lock = 0;
-			   y -= 1.7f;
-			   a = 0.f;
+			   a = - 0.6f;
 		   }
 
 		   if (lock == 0) {
