@@ -11,26 +11,36 @@
 #define DELAY \
 	for (Delay = 0; Delay < 20000; Delay++)
 
+volatile Xuint16 *ssegment = (Xuint16 *) XPAR_SVN_SEG_AXI_0_BASEADDR;
+
+#define WALL_WIDTH (45)
+#define HOLE_SIZE (150)
+#define BIRD_SIZE (32)
+
 unsigned int rand_hole()
 {
 	return 50 + rand() % 200;
 }
 
-void update_wall(float *wall, unsigned int *hole)
+void update_wall(float *wall, unsigned int *hole, float bird_x)
 {
+	float new_pos;
+
 	if (*wall <= 0.f) {
 		*hole = rand_hole();
 		*wall = 610.f;
-	} else
-		*wall = *wall - 0.25f;
+	} else {
+		new_pos = *wall - 0.25f;
+		if (*wall + WALL_WIDTH > bird_x &&
+				new_pos + WALL_WIDTH <= bird_x)
+			ssegment[0] ++;
+		*wall = new_pos;
+	}
 }
 
 int test_hit(unsigned int bird_x, unsigned int bird_y,
 		unsigned int wall_x, unsigned int hole_y)
 {
-#define WALL_WIDTH (45)
-#define HOLE_SIZE (150)
-#define BIRD_SIZE (32)
 	if (!(bird_x >= wall_x + WALL_WIDTH || bird_x + BIRD_SIZE <= wall_x)) {
 		if (bird_y + BIRD_SIZE >= hole_y + HOLE_SIZE ||
 				bird_y <= hole_y)
@@ -50,7 +60,8 @@ int test_hit(unsigned int bird_x, unsigned int bird_y,
 		wall_x[2] = 300; hole_y[2] = rand_hole(); \
 		wall_x[3] = 300; hole_y[3] = rand_hole(); \
 		bird_x = 100; \
-		lock = 1;
+		lock = 1; \
+		ssegment[0] = (Xuint16)0x0000;
 
 int main() 
 {
@@ -98,7 +109,7 @@ int main()
 
 		   if (lock == 0) {
 			   y += a;
-			   a += 0.014f;
+			   a += 0.018f;
 
 			   if (y >= 480.f - 15.f) {
 				   y = 480.f - 15.f;
@@ -106,10 +117,10 @@ int main()
 			   }
 
 			   if (!game_over) {
-				   update_wall(&wall0, hole_y + 0);
-				   update_wall(&wall1, hole_y + 1);
-				   update_wall(&wall2, hole_y + 2);
-				   update_wall(&wall3, hole_y + 3);
+				   update_wall(&wall0, hole_y + 0, (float)bird_x);
+				   update_wall(&wall1, hole_y + 1, (float)bird_x);
+				   update_wall(&wall2, hole_y + 2, (float)bird_x);
+				   update_wall(&wall3, hole_y + 3, (float)bird_x);
 			   }
 		   }
 

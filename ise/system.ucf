@@ -2,21 +2,21 @@
 # Pin constraints
 #
 NET GCLK LOC = "V10"  |  IOSTANDARD = "LVCMOS33";
-#NET LEDs_8Bits_TRI_O[0] LOC = "U16"  |  IOSTANDARD = "LVCMOS33";
-#NET LEDs_8Bits_TRI_O[1] LOC = "V16"  |  IOSTANDARD = "LVCMOS33";
-#NET LEDs_8Bits_TRI_O[2] LOC = "U15"  |  IOSTANDARD = "LVCMOS33";
-#NET LEDs_8Bits_TRI_O[3] LOC = "V15"  |  IOSTANDARD = "LVCMOS33";
-#NET LEDs_8Bits_TRI_O[4] LOC = "M11"  |  IOSTANDARD = "LVCMOS33";
-#NET LEDs_8Bits_TRI_O[5] LOC = "N11"  |  IOSTANDARD = "LVCMOS33";
-#NET LEDs_8Bits_TRI_O[6] LOC = "R11"  |  IOSTANDARD = "LVCMOS33";
-#NET LEDs_8Bits_TRI_O[7] LOC = "T11"  |  IOSTANDARD = "LVCMOS33";
-#NET Push_Buttons_4Bits_TRI_I[0] LOC = "A8"  |  IOSTANDARD = "LVCMOS33";
-#NET Push_Buttons_4Bits_TRI_I[1] LOC = "C4"  |  IOSTANDARD = "LVCMOS33";
-#NET Push_Buttons_4Bits_TRI_I[2] LOC = "C9"  |  IOSTANDARD = "LVCMOS33";
-#NET Push_Buttons_4Bits_TRI_I[3] LOC = "D9"  |  IOSTANDARD = "LVCMOS33";
+NET LEDs_8Bits_TRI_O[0] LOC = "U16"  |  IOSTANDARD = "LVCMOS33";
+NET LEDs_8Bits_TRI_O[1] LOC = "V16"  |  IOSTANDARD = "LVCMOS33";
+NET LEDs_8Bits_TRI_O[2] LOC = "U15"  |  IOSTANDARD = "LVCMOS33";
+NET LEDs_8Bits_TRI_O[3] LOC = "V15"  |  IOSTANDARD = "LVCMOS33";
+NET LEDs_8Bits_TRI_O[4] LOC = "M11"  |  IOSTANDARD = "LVCMOS33";
+NET LEDs_8Bits_TRI_O[5] LOC = "N11"  |  IOSTANDARD = "LVCMOS33";
+NET LEDs_8Bits_TRI_O[6] LOC = "R11"  |  IOSTANDARD = "LVCMOS33";
+NET LEDs_8Bits_TRI_O[7] LOC = "T11"  |  IOSTANDARD = "LVCMOS33";
+NET Push_Buttons_4Bits_TRI_I[0] LOC = "A8"  |  IOSTANDARD = "LVCMOS33";
+NET Push_Buttons_4Bits_TRI_I[1] LOC = "C4"  |  IOSTANDARD = "LVCMOS33";
+NET Push_Buttons_4Bits_TRI_I[2] LOC = "C9"  |  IOSTANDARD = "LVCMOS33";
+NET Push_Buttons_4Bits_TRI_I[3] LOC = "D9"  |  IOSTANDARD = "LVCMOS33";
 NET RESET LOC = "B8"  |  IOSTANDARD = "LVCMOS33"  |  TIG;
-#NET RS232_Uart_1_sin LOC = "N17"  |  IOSTANDARD = "LVCMOS33";
-#NET RS232_Uart_1_sout LOC = "N18"  |  IOSTANDARD = "LVCMOS33";
+NET RS232_Uart_1_sin LOC = "N17"  |  IOSTANDARD = "LVCMOS33";
+NET RS232_Uart_1_sout LOC = "N18"  |  IOSTANDARD = "LVCMOS33";
 #
 # additional constraints
 #
@@ -35,3 +35,16 @@ NET vga_fsl_0_vsync_pin LOC = "P7"  |  IOSTANDARD = "LVCMOS33";
 
 NET "GCLK" TNM_NET = sys_clk_pin;
 TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 100000 kHz;
+
+NET svn_seg_axi_0_AN_pin[0] LOC = "N16" | IOSTANDARD = "LVCMOS33";
+NET svn_seg_axi_0_AN_pin[1] LOC = "N15" | IOSTANDARD = "LVCMOS33";
+NET svn_seg_axi_0_AN_pin[2] LOC = "P18" | IOSTANDARD = "LVCMOS33";
+NET svn_seg_axi_0_AN_pin[3] LOC = "P17" | IOSTANDARD = "LVCMOS33";
+NET svn_seg_axi_0_SEG_pin[0] LOC = "M13" | IOSTANDARD = "LVCMOS33";
+NET svn_seg_axi_0_SEG_pin[1] LOC = "T17" | IOSTANDARD = "LVCMOS33";
+NET svn_seg_axi_0_SEG_pin[2] LOC = "T18" | IOSTANDARD = "LVCMOS33";
+NET svn_seg_axi_0_SEG_pin[3] LOC = "U17" | IOSTANDARD = "LVCMOS33";
+NET svn_seg_axi_0_SEG_pin[4] LOC = "U18" | IOSTANDARD = "LVCMOS33";
+NET svn_seg_axi_0_SEG_pin[5] LOC = "M14" | IOSTANDARD = "LVCMOS33";
+NET svn_seg_axi_0_SEG_pin[6] LOC = "N14" | IOSTANDARD = "LVCMOS33";
+NET svn_seg_axi_0_SEG_pin[7] LOC = "L14" | IOSTANDARD = "LVCMOS33";
