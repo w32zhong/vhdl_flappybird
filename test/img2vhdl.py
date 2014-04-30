@@ -4,6 +4,7 @@ im = Image.open ("1.png")
 rgb_im = im.convert('RGB')
 pix = rgb_im.load()
 w, h = rgb_im.size
+print "w= %d h= %d" % (w,h)
 
 print '('
 for y in range(h):
@@ -24,4 +25,4 @@ for y in range(h):
 		print '),'
 	else: 
 		print ')'
-print ')'
+print ');'
