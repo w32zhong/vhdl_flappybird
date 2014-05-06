@@ -1,6 +1,8 @@
 #!/usr/bin/python
 from PIL import Image
-im = Image.open ("1.jpg")
+import sys
+im = Image.open (sys.argv[1])
+print (sys.argv[1])
 rgb_im = im.convert('RGB')
 pix = rgb_im.load()
 w, h = rgb_im.size
