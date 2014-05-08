@@ -46,30 +46,6 @@
 *    example code (vga_fsl_app.c) for details.
 */
 
-#define  vga_fsl(\
-     input_slot_id,\
-     input_0,    \
-     input_1,    \
-     input_2,    \
-     input_3,   \
-     input_4,   \
-     input_5    \
-     )\
-{\
-   int i;\
-\
-   for (i=0; i<1; i++)\
-   {\
-      write_into_fsl(input_0[i], input_slot_id);\
-      write_into_fsl(input_1[i], input_slot_id);\
-      write_into_fsl(input_2[i], input_slot_id);\
-      write_into_fsl(input_3[i], input_slot_id);\
-      write_into_fsl(input_4[i], input_slot_id);\
-      write_into_fsl(input_5[i], input_slot_id);\
-   }\
-\
-}
-
 XStatus VGA_FSL_SelfTest();
 
 #endif 

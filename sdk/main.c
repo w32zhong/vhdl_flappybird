@@ -61,13 +61,17 @@ int test_hit(unsigned int bird_x, unsigned int bird_y,
 		wall_x[3] = 300; hole_y[3] = rand_hole(); \
 		bird_x = 100; \
 		lock = 1; \
+		j = 0; \
 		ssegment[0] = (Xuint16)0x0000;
 
 int main() 
 {
-	volatile int Delay;
+	volatile int Delay, move_delay;
+	int i, j;
 	float y, a, wall0, wall1, wall2, wall3;
 	unsigned int bird_x, bird_y, wall_x[4] , hole_y[4], game_over, lock;
+
+	unsigned int bird_ani_x[3], bird_ani_y[3];
 	u32 DataRead;
 	// x, y = [640, 480];
 
@@ -75,6 +79,24 @@ int main()
 	begin:
 	   while (1) {
 		   bird_y = (unsigned int)y;
+
+		   for (i = 0; i < 3; i++) {
+			   if (i == j) {
+				   bird_ani_x[i] = bird_x;
+				   bird_ani_y[i] = bird_y;
+
+			   } else {
+				   bird_ani_x[i] = 700;
+				   bird_ani_y[i] = 700;
+			   }
+		   }
+
+		   move_delay ++;
+		   if (move_delay > 50) {
+		   	j = (j + 1) % 3;
+		   	move_delay = 0;
+		   }
+
 		   wall_x[0] = wall0;
 		   wall_x[1] = wall1;
 		   wall_x[2] = wall2;
@@ -89,6 +111,11 @@ int main()
 		   if (test_hit(bird_x, bird_y, wall_x[3], hole_y[3]))
 			   game_over = 1;
 
+		   putfsl(bird_ani_x[0], 0);
+		   putfsl(bird_ani_y[0], 0);
+		   putfsl(bird_ani_x[1], 0);
+		   putfsl(bird_ani_y[1], 0);
+
 		   putfsl(wall_x[3], 0);
 		   putfsl(hole_y[3], 0);
 		   putfsl(wall_x[2], 0);
@@ -97,14 +124,15 @@ int main()
 		   putfsl(hole_y[1], 0);
 		   putfsl(wall_x[0], 0);
 		   putfsl(hole_y[0], 0);
-		   putfsl(bird_x, 0);
-		   putfsl(bird_y, 0);
+		   putfsl(bird_ani_x[2], 0);
+		   putfsl(bird_ani_y[2], 0);
 
 		   GpioInputExample(XPAR_PUSH_BUTTONS_4BITS_DEVICE_ID, &DataRead);
 
 		   if (DataRead == 2 && !game_over) {
 			   lock = 0;
-			   a = - 0.6f;
+			   y -= 0.5f;
+			   a = - 0.5f;
 		   }
 
 		   if (lock == 0) {
