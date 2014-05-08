@@ -184,7 +184,7 @@ begin
           when Read_Inputs =>
             if (FSL_S_Exists = '1') then
               -- Coprocessor function (Adding) happens here
-              objects_array(nr_of_reads) <= FSL_S_Data (18 to 31);
+              objects_array(nr_of_reads) <= FSL_S_Data (22 to 31);
               if (nr_of_reads = 0) then
                 objects_done <= '1';
                 state        <= Idle;
