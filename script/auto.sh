@@ -7,3 +7,5 @@ fun () {
 fun 0
 fun 1
 fun 2
+fun game_over
+fun gameover
